@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+void print(int multiplosdeN[], int i, int j)
+{
+    
+    if(i == 0)
+    {
+        printf("INEXISTENTE\n");
+        return;
+    }
+    else
+    {
+        if(i == j)
+        {
+            return;
+        }
+        else
+        {
+            printf("%d\n", multiplosdeN[j]);
+        }
+    }
+
+    j++;
+    print(multiplosdeN, i, j);
+}
+
+void multiplos(int N, int valor1, int valor2, int multiplosdeN[], int i)
+{
+    if(valor1 == (valor2 + 1))
+    {
+        print(multiplosdeN, i, 0);
+        return;
+    }
+
+    if(valor1 % N == 0)
+    {
+        multiplosdeN[i] = valor1;
+        i++;
+    }
+
+    multiplos(N, valor1 + 1, valor2, multiplosdeN, i);
+}
+
+int main()
+{
+    int N, valor1, valor2;
+
+    scanf("%d %d %d", &N, &valor1, &valor2);
+
+    int multiplosdeN[valor2 - valor1];
+
+    multiplos(N, valor1, valor2, multiplosdeN, 0);
+
+    return 0;
+}
