@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+void totalizar(int quantidade[], char tamanho[], int i, int j, int capsulas, int xicaras)
+{
+    int unidades;
+    
+    if(j == i)
+    {
+        xicaras = capsulas / 3.5;
+
+        printf("%d\n%d\n", capsulas, xicaras);
+        
+        return;
+    }
+    
+    // se o tamanho da caixa for pequeno o valor das unidades é igual a 10
+    if(tamanho[j] == 'p' || tamanho[j] == 'P')
+    {
+        unidades = 10 * quantidade[j];
+    }
+    // se o tamanho da caixa for grande o valor das unidades é igual a 16
+    else if(tamanho[j] == 'g' || tamanho[j] == 'G')
+    {
+        unidades = 16 * quantidade[j];
+    }
+    
+    capsulas += unidades;
+    
+    j++;
+    totalizar(quantidade, tamanho, i, j, capsulas, xicaras);
+}
+
+void scan(int quantidade[], char tamanho[], int i)
+{
+
+    // enquanto i for menor que 7 a função continua lendo os valores de entrada
+    if(i == 7)
+    {
+        //chama a função quando não houver mais entradas, passando tais parametros
+        totalizar(quantidade, tamanho, i, 0, 0, 0);
+
+        return;
+    }
+    
+    //guarda cada valor em um array
+    scanf("%d %c", &quantidade[i], &tamanho[i]);
+    
+    i++;
+
+    scan(quantidade, tamanho, i);
+}
+
+int main()
+{
+    int quantidade[7];
+    char tamanho[7];
+    scan(quantidade, tamanho, 0);
+    
+    return 0;
+}
