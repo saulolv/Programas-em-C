@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int teste_primo(int n)
+{
+    int primo = 0;
+    
+    //condição especial para valores pequenos
+    if(n == 0 || n == 1)
+    {
+        return 1;
+    }
+
+    for(int i = 2; i <= (n / 2); i++)
+    {
+        /* se o numero dado for dividido por qualquer outro inteiro
+           menor que ele e o resto for 0 então não é primo */
+        if(n % i == 0)
+        {
+            primo++;
+            break;
+        }
+    }
+    return primo;
+}
+
+int main()
+{
+    // o numero que será testado
+    int number;
+    int primo;
+
+    printf("Digite um número: ");
+    scanf("%d", &number);
+
+     /* se o valor de primo for diferente de zero
+       o numero não é primo */
+    primo = teste_primo(number);
+
+    if(primo == 0)
+    {
+        printf("primo\n");
+    }
+    else
+    {
+        printf("Nao primo\n");
+    }
+
+    return 0;
+}
